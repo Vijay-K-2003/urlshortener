@@ -1,0 +1,18 @@
+version: '3'
+services:
+  api:
+    build: go_urlshortener/api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+  db:
+    build: go_urlshortener/db
+    ports:
+      - "6379:6379"
+    # volumes:
+    #   - go_urlshortener/.data:/data
+  frontend:
+    build: url_shortener_frontend
+    ports:
+      - "80:80"
